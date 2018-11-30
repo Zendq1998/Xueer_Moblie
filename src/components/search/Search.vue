@@ -1,23 +1,34 @@
 <template>
-	<div :class="[$style.search_view, {[$style.search_active]: show_search}]">
-		<div :class="[$style.warpper, $style.warpper_fadeIn, $style.warpper_fadeOut]">
-			<div :class="$style.container">
-				<div :class="[$style.search_box, $style.space]">
-					<input v-model="info" type="text" :class="$style.search_input">
-					<button @click="search" :class="$style.search_btn">搜索</button>
-				</div>
-				<div :class="$style.hot">
-					<p :class="$style.title">大家都在搜</p>
-					<div :class="[$style.items, $style.space]">
-						<span @click="searchHot(item)" v-for='item in hot' :data-link="link" :class="$style.item" :key="item.id">
-							{{ item }}
-						</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div @click="hiddenSearch" :class="[$style.circle, $style.circle_fadeIn]"></div>
-	</div>
+  <div :class="[$style.search_view, { [$style.search_active]: show_search }]">
+    <div
+      :class="[$style.warpper, $style.warpper_fadeIn, $style.warpper_fadeOut]"
+    >
+      <div :class="$style.container">
+        <div :class="[$style.search_box, $style.space]">
+          <input v-model="info" type="text" :class="$style.search_input" />
+          <button @click="search" :class="$style.search_btn">搜索</button>
+        </div>
+        <div :class="$style.hot">
+          <p :class="$style.title">大家都在搜</p>
+          <div :class="[$style.items, $style.space]">
+            <span
+              @click="searchHot(item)"
+              v-for="item in hot"
+              :data-link="link"
+              :class="$style.item"
+              :key="item.id"
+            >
+              {{ item }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      @click="hiddenSearch"
+      :class="[$style.circle, $style.circle_fadeIn]"
+    ></div>
+  </div>
 </template>
 
 <script>
@@ -61,7 +72,7 @@ export default {
       this.hideSearch();
     },
     search() {
-      if (!this.info) {
+      if (!this.info || !this.show_search) {
         return;
       }
       this.hiddenSearch();
@@ -80,7 +91,7 @@ export default {
 };
 </script>
 
-<style lang='scss' module>
+<style lang="scss" module>
 .search_view {
   z-index: 100;
   position: fixed;

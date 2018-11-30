@@ -56,9 +56,9 @@ const actions = {
         // 第一次请求时，把列表的元信息解析一下
         // link: </api/v1.0/courses/?page=2>; rel="next", </api/v1.0/courses/?page=30>; rel="last"
         // let totalPages = /page=([d]+)/.exec(headers[0].split(';')[1])
-        const totalPages = Number(
-          /page=([0-9]+)/.exec(headers[0].split(";")[1])[1]
-        );
+        const totalPages =
+          headers[0] &&
+          Number(/page=([0-9]+)/.exec(headers[0].split(";")[1])[1]);
         commit("insertCourses", json);
         commit("setListMetaData", totalPages);
         commit("setLoading", false);
